@@ -1,0 +1,431 @@
+<html>
+<head>
+<body>
+<title>Guess The Number</title>
+<div id="blurrer2"></div>
+<button id="Restart">↻</button>
+<button id= "typeGuessedNumber">Type your guess below</button>
+<button id= "exit">X</button>
+<div id="blurrer"></div>
+<img src="box.png" id="blocker"></img>
+<form action="GuessTheNumber.html" method = "get">
+    <input id="numberBeingGuessed" type="number" name="TypedNum" placeholder = "No." >
+</form>
+<p id = "note">Note: The number is between 1 and 10</p>
+<button id= "submitButton">Guess</button>
+<h1 id="higherOrLower">You were very close<h1>
+<h1 id="noOfTriesText"></h1>
+<button id="PLAY">PLAY!</button>
+
+<style>
+
+#blurrer2 {
+    position: absolute;
+    top: 25%;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    width: 80%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(14.9px);
+    display: none;
+}
+
+#note{
+    position: absolute;
+    top: 25%;
+    left: 180;
+    font-family: techgood;
+    font-size: 30;
+    width: 500;
+    -webkit-text-fill-color: rgb(172, 26, 26);
+    display: none;
+}
+
+#blurrer {
+    position: absolute;
+    top: 36%;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: 35%;
+    background: rgba(30, 29, 29, 0.735);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(14.9px);
+    display: block;
+}
+
+#blocker {
+    position: absolute;
+    top: 38%;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    display: block;
+    width: 900;
+    height: 450;
+}
+
+#PLAY {
+   color: rgb(255, 255, 255);
+   background-image: linear-gradient(to bottom right, rgb(0, 76, 255), rgb(0, 221, 255));
+   position: absolute;
+   top: 58%;
+   left: 50%; 
+   transform: translate(-50%, 0%);
+   border: none;
+   border-radius: 24px;
+   width: 400px;
+   height: 200px;
+   font-size: 150px;
+   font-family: Crackajack;
+   transition: 0.3s;
+}
+
+#PLAY:hover {
+    box-shadow: 0px 0px 13px rgb(0, 255, 119);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body {
+    background-image: url("gifback.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@font-face {
+    font-family: Crackajack;
+    src: url("Crackajack 400.otf");
+}
+
+@font-face{
+    font-family: nova;
+    src: url("Nova.ttf")
+}
+
+@font-face{
+    font-family: techgood;
+    src: url('techgood.otf')
+}
+
+@font-face{
+    font-family: techGuess;
+    src: url('techGuess.otf')
+}
+
+@font-face{
+    font-family: Darknet;
+    src: url(Darknet.ttf)
+}
+
+@font-face{
+    font-family: Orbiton;
+    src:url(Orbiton.ttf)
+}
+#typeGuessedNumber{
+    width: 680px;
+    height: 90px;
+    border: none;
+    background-color: rgb(46, 188, 188);
+    position: absolute; 
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    top: 650px;
+    font-family: Crackajack;
+    font-weight: 100;
+    font-size: 60px;
+    border-radius: 200px;
+    display: none;
+    text-align: center;
+    -webkit-text-fill-color: rgb(248, 248, 248);
+}
+
+::selection{
+    background-color: rgb(89, 33, 255);
+    -webkit-text-fill-color: rgb(98, 234, 255);
+}
+
+#numberBeingGuessed{
+    position: absolute;
+    top: 770px;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    width: 400;
+    height: 100;
+    background-color: transparent;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    font-size: 80;
+    border-color: aliceblue;
+    display: none;
+    border-radius: 10px;
+    border: none;
+    background-image: linear-gradient(to bottom right,rgb(0, 149, 255), rgb(145, 98, 255));
+    caret-color: rgb(255, 255, 255);
+    font-family: techgood;
+}
+
+#submitButton{
+    position: absolute;
+    top: 1000px;
+    left: 50%; 
+    transform: translate(-50%, 0%);    
+    border-radius: 10px;
+    width: 270;
+    height: 100;
+    font-family: techGuess;
+    font-size: 50;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    background-image: linear-gradient(to bottom left, rgb(0, 255, 119),rgb(0, 255, 183), rgb(0, 166, 255), rgb(95, 67, 255));
+    border: none;
+    font-weight: 23;
+    display: none;
+    transition: 0.3s;
+}
+
+#higherOrLower{
+    position: absolute;
+    top: 1100;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    font-family: Darknet;
+    -webkit-text-fill-color: rgb(216, 49, 49);
+    display: none;
+    text-align: center;
+    font-size: 50;
+    width: 1000;
+}
+
+#noOfTriesText{
+    position: absolute;
+    top: 880px;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    font-family: Orbiton;
+    -webkit-text-fill-color: rgb(34, 122, 56);
+    display: none;
+    font-size: 60;
+}
+
+#Restart{
+    position: absolute;
+    top: 60%;
+    left: 50%; 
+    transform: translate(-50%, 0%);
+    width: 150px;
+    height: 50px;
+    font-size:42;
+    font-family: monospace;
+    font-weight: 1000;
+    border-radius: 10px;
+    border: none;
+    display: none;
+    color: rgb(96, 255, 178);
+    background-color: rgb(72, 163, 255);
+    transition: 0.3s;
+    -webkit-text-fill-color: rgb(255, 111, 111);
+}
+
+#Restart:hover {
+    box-shadow: 0px 0px 13px rgb(61, 255, 184);
+    cursor: pointer;
+}
+
+#exit{
+    position: absolute;
+    top: 550px;
+    left: 82%; 
+    transform: translate(-50%, 0%);
+    width: 70;
+    height: 70;
+    border: none;
+    border-radius: 17%;
+    color: rgb(255, 220, 220);
+    background-color: rgb(255, 61, 61);
+    font-family: verdana;
+    font-size: 40;
+    display: none;
+    font-weight: 50px;
+    transition: 0.5s;
+}
+
+#exit:hover{
+    color: rgb(255, 108, 108);
+    box-shadow: 0px 0px 13px rgb(255, 77, 0);
+    background-color: rgb(255, 173, 110);
+    cursor: pointer;
+    border-radius: 100%;
+}
+</style>
+<script>
+
+var playButton = document.getElementById('PLAY')
+var typeGuessedNumber = document.getElementById('typeGuessedNumber')
+var blocker = document.getElementById('blocker')
+var blurrer = document.getElementById('blurrer')
+var numberBeingGuessed = document.getElementById('numberBeingGuessed')
+var submitButton = document.getElementById('submitButton')
+var blurrer2 = document.getElementById('blurrer2')
+var higherOrLower = document.getElementById('higherOrLower')
+var noOfTriesText = document.getElementById('noOfTriesText')
+var restart = document.getElementById('Restart')
+var home = document.getElementById('home')
+var exit = document.getElementById('exit')
+var note = document.getElementById('note')
+
+function restartEverything () {
+    tries = 5
+    win = false
+    numberGenerator = 1
+    document.body.style.backgroundImage = "url('mountainback.jpg')";
+    playButton.style.display = "none";
+    typeGuessedNumber.style.display = "block";
+    blocker.style.display = "none";
+    blurrer.style.display = "none";
+    numberBeingGuessed.style.display = "block";
+    submitButton.style.display = "block";
+    blurrer2.style.display = "block";
+    noOfTriesText.style.display = "block";
+    numberGenerate()
+    noOfTriesText.innerHTML = "Tries:" + " " + tries
+    restart.style.display = "none"
+    numberBeingGuessed.value = "No."
+    exit.style.display = "block"
+    higherOrLower.style.display = "none"
+    noOfTriesText.style.webkitTextFillColor = "#227A38"
+    higherOrLower.style.webkitTextFillColor = "#D83131"
+};
+
+playButton.addEventListener("click", function(){
+    restartEverything(); mainLoop(); 
+    exit.style.display = "block";
+    note.style.display = "block"
+    })
+restart.addEventListener("click", function(){restartEverything()})
+exit.addEventListener("click", function() {
+    tries = 5
+    win = false
+    numberGenerator = 1
+    playButton.style.display = "block";
+    typeGuessedNumber.style.display = "none";
+    blocker.style.display = "block";
+    blurrer.style.display = "block";
+    numberBeingGuessed.style.display = "none";
+    submitButton.style.display = "none";
+    blurrer2.style.display = "none";
+    document.body.style.backgroundImage = "url('gifback.gif')";
+    noOfTriesText.style.display = "none";
+    restart.style.display = "none"
+    exit.style.display = "none"
+    higherOrLower.style.display = "none"
+    noOfTriesText.style.webkitTextFillColor = "#227A38"
+    higherOrLower.style.webkitTextFillColor = "#ff6f6f";
+    note.style.display = "none"
+})
+
+submitButton.addEventListener("click", function() {
+    higherOrLower.style.display = "block";
+
+    if (parseInt(numberBeingGuessed.value) === numberGenerator) {
+        submitButton.disabled = true
+        higherOrLower.innerHTML = "Good Job! You got the number right!";
+        higherOrLower.style.webkitTextFillColor = "#2ca346";
+        win = true
+        exit.style.display = "none"
+        setTimeout(function() {
+            restart.style.display = "block";
+            higherOrLower.style.display = "none"
+        }, 3000);
+    }
+
+    if (parseInt(numberBeingGuessed.value) > numberGenerator) {
+        higherOrLower.innerHTML = "No, the number is lower.";
+        tries -=1
+        noOfTriesText.innerHTML = "Tries:" + " " + tries 
+        if (tries == 4){
+            noOfTriesText.style.webkitTextFillColor = "#d45f11"
+        }
+        if (tries == 2){
+            noOfTriesText.style.webkitTextFillColor = "#a82020"
+        }
+    }
+
+    if (parseInt(numberBeingGuessed.value) < numberGenerator) {
+        higherOrLower.innerHTML = "No, the number is higher.";
+        tries -=1
+        noOfTriesText.innerHTML = "Tries:" + " " + tries
+        if (tries == 4){
+            noOfTriesText.style.webkitTextFillColor = "#d45f11"
+        }
+        if (tries == 2){
+            noOfTriesText.style.webkitTextFillColor = "#a82020"
+        }
+    }
+
+    if (tries <= 0){
+        noOfTriesText.style.webkitTextFillColor = "#ff2e2e"
+        submitButton.disabled = true
+        submitButton.style.backgroundImage = "linear-gradient(to bottom left, rgb(72, 146, 107),rgb(88, 197, 166), rgb(52, 113, 145),rgb(84, 74, 137))";
+        submitButton.style.cursor = "not-allowed"
+        submitButton.style.webkitTextFillColor = "#adadad"
+        console.log(submitButton.disabled)
+        higherOrLower.innerHTML = "Sorry, you lost the game...";
+        higherOrLower.style.webkitTextFillColor = "#c70e0e"
+        noOfTriesText.innerHTML = "Tries:" + " " + tries
+        exit.style.display = "none"
+        setTimeout(function() {
+            restart.style.display = "block";
+            higherOrLower.style.display = "none"
+        }, 3000);
+    }
+})
+
+function ButtonCheck() {
+    if (numberBeingGuessed.value == '' || win) {
+        submitButton.disabled = true
+        submitButton.style.backgroundImage = "linear-gradient(to bottom left, rgb(72, 146, 107),rgb(88, 197, 166), rgb(52, 113, 145),rgb(84, 74, 137))";
+        submitButton.style.cursor = "not-allowed"
+        submitButton.style.webkitTextFillColor = "#adadad"
+    } 
+    else if (tries > 0){
+        submitButton.disabled = false
+        submitButton.style.backgroundImage = "linear-gradient(to bottom left, rgb(0, 255, 119),rgb(0, 255, 183), rgb(0, 166, 255), rgb(95, 67, 255))";
+        submitButton.style.cursor = "pointer"
+        submitButton.style.webkitTextFillColor = "#ffffff"
+    }
+
+    if (submitButton.disabled == false) {
+        submitButton.addEventListener("mouseover", function() {
+            submitButton.style.boxShadow = "0px 0px 13px rgb(0, 94, 255)"
+        })
+
+        submitButton.addEventListener("mouseout", function() {
+            submitButton.style.boxShadow = "none"
+        })
+    } 
+
+    else {
+        submitButton.style.boxShadow = "none"
+    }
+}
+
+
+
+function mainLoop() {
+    ButtonCheck()
+    window.requestAnimationFrame(mainLoop)
+}
+
+function numberGenerate() {
+    numberGenerator = Math.floor(Math.random() * 10);
+    console.log(numberGenerator)
+}
+
+</script>
+</body>
+</head> 
+</html>
